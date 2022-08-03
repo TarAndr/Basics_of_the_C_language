@@ -1,3 +1,3 @@
 @echo off
-gcc HelloWorld.c -o HelloWorld.exe
-HelloWorld.exe
+gcc Lesson2.c -o Lesson2.exe
+Lesson2.exe
