@@ -2,61 +2,96 @@
 
 int main() {
 	int mode = 1;
-	float Uo, Ui, R1, R2;
+	
 	while(mode) {
-    printf("\n For calculation Uo enter 1 \n");
-    printf(" For calculation Ui enter 2 \n");
-    printf(" For calculation R1 enter 3 \n");
-    printf(" For calculation R2 enter 4 \n");
-    printf(" For exit enter 0 \n");
-	scanf("%d", &mode);
-	switch(mode) {
-		case 1:
-		printf("\n Calculation Uo: \n Please input Ui \n");
-		scanf("%f", &Ui);
-		printf("Please input R1 \n");
-		scanf("%f", &R1);
-		printf("Please input R2 \n");
-		scanf("%f", &R2);
-		Uo = Ui * (R1 / (R1 + R2));
-		printf("Uo = %f \n", Uo);
-		break;
+		float Ui, Uo = 0, R1 = 0, R2 = 0;
 	
-		case 2:
-		printf("\n Calculation Ui: \n Please input Uo \n");
-		scanf("%f", &Uo);
-		printf("Please input R1 \n");
-		scanf("%f", &R1);
-		printf("Please input R2 \n");
-		scanf("%f", &R2);
-		Ui = Uo * (R1 + R2) / R1;
-		printf("Ui = %f \n", Ui);
-		break;
-	
-		case 3:
-		printf("\n Calculation R1: \n Please input Uo \n");
-		scanf("%f", &Uo);
-		printf("Please input Ui \n");
-		scanf("%f", &Ui);
-		printf("Please input R2 \n");
-		scanf("%f", &R2);
-		R1 = Uo * R2 / (Ui - Uo);
-		printf("R1 = %f \n", R1);
-		break;
+		printf("\n \n __________________________________________________ \n");
+		printf(" == Resistive divider calculator V1.0 by TarAndr == \n");
+		printf("\n For calculation Uo enter 1 \n");
+		printf(" For calculation Ui enter 2 \n");
+		printf(" For calculation R1 enter 3 \n");
+		printf(" For calculation R2 enter 4 \n");
+		printf(" For exit enter 0 \n");
 		
-		case 4:
-		printf("\n Calculation R2: \n Please input Uo \n");
-		scanf("%f", &Uo);
-		printf("Please input Ui \n");
-		scanf("%f", &Ui);
-		printf("Please input R1 \n");
-		scanf("%f", &R1);
-		R2 = R1 * (Ui - Uo) / Uo;
-		printf("R2 = %f \n", R2);
-		break;
+		do {
+			printf("\n Please enter one number from 0 to 4 \n ");
+			scanf("%d", &mode);
+		} while (mode < 0 || mode > 4);
 		
-		default:
-		break;
+		switch(mode) {
+			
+			case 1:
+			printf("\n Calculating U OUT: \n ");
+			break;
+		
+			case 2:
+			printf("\n Calculating U INPUT: \n ");
+			break;
+		
+			case 3:
+			printf("\n Calculating R1: \n ");
+			break;
+			
+			case 4:
+			printf("\n Calculating R2: \n ");
+			break;
+			
+			default:
+			return 0;
+		}
+			
+		if(mode != 1) {
+			do {
+				printf("\n Please write OUTPUT voltage in Volts\n ");
+				scanf("%f", &Uo);
+			} while (Uo <= 0);
+		}
+		
+		if(mode != 2) {
+			do {
+				printf("\n Please write real INPUT voltage in Volts\n ");
+				scanf("%f", &Ui);
+			} while (Ui <= Uo);
+		}
+		
+		if(mode != 3) {
+			do {
+				printf("\n Please input real R1 in Oms\n ");
+				scanf("%f", &R1);
+			} while (R1 <= 0);
+		}
+		
+		if(mode != 4) {
+			do {
+				printf("\n Please input real R2 in Oms\n ");
+				scanf("%f", &R2);
+			} while (R2 < 0);
+		}
+		
+		printf("\n Result: ");
+		
+		switch(mode) {
+			
+			case 1:
+			Uo = Ui * (R1 / (R1 + R2));
+			printf(" Uo = %.2f Volt\n", Uo);
+			break;
+		
+			case 2:
+			Ui = Uo * (R1 + R2) / R1;
+			printf(" Ui = %.2f Volt\n", Ui);
+			break;
+		
+			case 3:
+			R1 = Uo * R2 / (Ui - Uo);
+			printf(" R1 = %.2f Om\n", R1);
+			break;
+			
+			case 4:
+			R2 = R1 * (Ui - Uo) / Uo;
+			printf(" R2 = %.2f Om\n", R2);
+			break;
 		}
 	}
     return 0;
