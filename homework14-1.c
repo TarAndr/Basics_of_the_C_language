@@ -1,12 +1,15 @@
 #include <stdio.h>
 
 char* digTObin(int a, char* A) {
-	int temp;
+	int sign = ((a < 0) ? 1 : 0);
 	A[0] = '0';
 	A[1] = 'b';
 	for(int i = sizeof(int) * 8; i > 0; i--) {
 		A[i + 1] = ((a % 2) ? '1' : '0');
 		a /= 2;
+	}
+	if(sign) {
+		A[2] = '1';
 	}
 	A[sizeof(int) * 8 + 2] = '\0';
 	return A;
