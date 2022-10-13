@@ -1,3 +1,3 @@
 @echo off
-gcc homework14-2.c -o homework14-2.exe
-homework14-2.exe
+gcc homework14-4.c -o homework14-4.exe
+homework14-4.exe
